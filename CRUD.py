@@ -4,18 +4,26 @@ matriculas = {} # dicionario
 matriculaAtual = 1  # Variavel global id matricula
 
 def criarAlunos():      # Função para fazer matricula
-    global matriculaAtual 
-    
-    nome = input("Digite o nome do aluno que está sendo matriculado: ")
-    cpf = str(input("Digite o CPF do aluno: "))
-    serie = input("Digite a série do aluno: ")
+    while True:
+        global matriculaAtual 
+        
+        nome = input("Digite o nome do aluno que está sendo matriculado: ")
+        cpf = str(input("Digite o CPF do aluno: "))
+        serie = input("Digite a série do aluno: ")
 
-    matricula = matriculaAtual
-    matriculaAtual += 1  # aumenta o ID matricula
+        matricula = matriculaAtual
+        matriculaAtual += 1  # aumenta o ID matricula
 
-    matriculas[matricula] = {'nome': nome, 'cpf': cpf, 'serie': serie} # adiciona a matricula no dicionario
+        matriculas[matricula] = {'nome': nome, 'cpf': cpf, 'serie': serie} # adiciona a matricula no dicionario
 
-    print("Esse aluno foi matriculado!")
+        print("Esse aluno foi matriculado!")
+
+        sair = input("Deseja Matricular outro aluno? sim/nao  ")
+        if sair != 'sim':
+            break
+
+def listarMatriculas():
+    print(matriculas)
 
 def consultarAluno():       # Função para consultar matricula
     numatri = int(input("digite o numero da matricula: "))
@@ -57,22 +65,25 @@ def main():
         Sistema de gerenciamento de Alunos
                         
             (1) Adicionar matricula
-            (2) Consultar Aluno
-            (3) Atualizar matricula
-            (4) Excluir matricula
-            (5) Sair
+            (2) Listar matriculas
+            (3) Consultar Aluno
+            (4) Atualizar matricula
+            (5) Excluir matricula
+            (6) Sair
                 
                 ''')
         
         if escolha == '1':
             criarAlunos()
         elif escolha == '2':
-            consultarAluno()
+            listarMatriculas()
         elif escolha == '3':
-            atualizarAluno()
+            consultarAluno()
         elif escolha == '4':
-            excluirAluno()
+            atualizarAluno()
         elif escolha == '5':
+            excluirAluno()
+        elif escolha == '6':
             print ("Saindo...")
             break
         else:
